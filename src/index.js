@@ -16,6 +16,8 @@ mongoose.connect('mongodb+srv://Uranium-Batch:aruSjkdGdfhc9MRK@functionup.eel5r.
 
 app.use('/', route);
 
+app.get('/health', (req, res) => res.status(200).send({ status: true, msg: 'Server is running' }))
+
 app.listen(process.env.PORT || 3000, function() {
     console.log('Express app running on port ' + (process.env.PORT || 3000))
 });

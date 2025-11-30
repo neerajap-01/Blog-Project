@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: blog-project-service
+  namespace: blog-project
+  labels:
+    app: blog-project
+
+spec:
+  selector:
+    app: blog-project
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: ClusterIP

@@ -1,0 +1,24 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: blog-project-deployment
+  namespace: blog-project
+  labels:
+    app: blog-project
+    
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blog-project
+  template:
+    metadata:
+      name: blog-project-pod
+      labels:
+        app: blog-project
+    spec:
+      containers:
+      - name: blog-project-container
+        image: neeraj01/blog-project-k8s:latest
+        ports:
+        - containerPort: 3000

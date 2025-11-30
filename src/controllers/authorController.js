@@ -1,6 +1,6 @@
 const Author = require('../model/authorModel');
 const validateEmail = require('email-validator');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //Add author Router handler
@@ -17,7 +17,7 @@ const addAuthor = async (req, res) => {
     if(!data.email) return res.status(400).send({ status: false, msg: "Email is required" });
     if(!data.password) return res.status(400).send({ status: false, msg: "Password is required" });
 
-    data.password = await bcrypt.hash(data.password, 10); 
+    // data.password = await bcrypt.hash(data.password, 10); 
     
     let validString = /\d/; //validating the string for numbers
 
@@ -62,8 +62,8 @@ const loginAuthor = async (req, res) => {
     let getAuthorData = await Author.findOne({ email: data.email });
     if(!getAuthorData) return res.status(401).send({ status: false, msg: "Email is incorrect" });
 
-    let checkPassword = await bcrypt.compare(data.password, getAuthorData.password)
-    if(!checkPassword) return res.status(401).send({ status: false, msg: "Password is incorrect" });
+    // let checkPassword = await bcrypt.compare(data.password, getAuthorData.password)
+    // if(!checkPassword) return res.status(401).send({ status: false, msg: "Password is incorrect" });
 
     //generating the token for logged in author
     let token = jwt.sign({authorId: getAuthorData._id}, "Blog Project-1", {expiresIn: '1d'});
