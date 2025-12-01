@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: blog-project-service
-  namespace: blog-project
+  namespace: nginx
   labels:
     app: blog-project
 

@@ -2,10 +2,10 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: blog-project-deployment
-  namespace: blog-project
+  namespace: nginx
   labels:
     app: blog-project
-    
+
 spec:
   replicas: 1
   selector:
@@ -22,3 +22,9 @@ spec:
         image: neeraj01/blog-project-k8s:latest
         ports:
         - containerPort: 3000
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret #Didn't commid the secret.yaml file to the repository.
+              key: MONGODB_URI
